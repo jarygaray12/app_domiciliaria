@@ -79,8 +79,11 @@ class ArepaPage extends StatelessWidget {
               ),
               SizedBox(height: 8.0),
               ElevatedButton.icon(
-                onPressed: () =>
-                    _sendWhatsAppOrder(context), // Pasar context como argumento
+                onPressed: () {
+                  String mensaje = "¡Hola! Quiero comprar $nombre. tengo interes en en sus productos.";
+                  String numeroWhatsApp = "3215151584"; // Reemplaza con el número de WhatsApp al que deseas enviar el mensaje
+                  _sendWhatsAppOrder(context, numeroWhatsApp, mensaje);
+                },
                 icon: Icon(Icons.shopping_cart), // Ícono de carrito de compra
                 label: Text('Comprar'),
               ),
@@ -90,4 +93,32 @@ class ArepaPage extends StatelessWidget {
       ],
     ),
   );
+}
+
+_sendWhatsAppOrder(BuildContext context, String numero, String mensaje) async {
+  final whatsappUrl = "https://wa.me/$numero?text=${Uri.encodeComponent(mensaje)}";
+
+  if (await canLaunch(whatsappUrl)) {
+    await launch(whatsappUrl);
+  } else {
+    // Manejar el error si no se puede abrir WhatsApp
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text("No se pudo abrir WhatsApp."),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Cerrar"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
 }
