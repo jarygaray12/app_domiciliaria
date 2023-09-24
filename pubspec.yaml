@@ -30,15 +30,23 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
-  flutter:
-    sdk: flutter
-  flutter_launcher_icons: ^0.13.1
-  url_launcher: ^6.1.14
 
+ 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+
+dev dependencies:
+  flutter:
+    sdk: flutter
+  firebase_auth: ^3.3.3  # Dependencia de autenticación Firebase
+  http: ^0.13.3  # Dependencia para hacer solicitudes HTTP
+  shared_preferences: ^2.0.11  # Dependencia para almacenar datos localmente
+
+  assets:
+    - assets/empanada.jpg  # Ajusta la ubicación y el nombre de la imagen según corresponda
+    - assets/arepas.jpg
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

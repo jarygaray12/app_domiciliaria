@@ -3,9 +3,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class EmpanadaPage extends StatelessWidget {
   // Función para abrir WhatsApp
-  _launchWhatsApp(BuildContext context) async {
+    _sendWhatsAppOrder(BuildContext context) async {
     final whatsappUrl =
-        "https://wa.me/3215151584"; // Enlace de WhatsApp con el número de teléfono
+        "https://wa.me/3215151584?text=¡Hola! Quiero hacer un pedido de una arepa."; // Enlace de WhatsApp con mensaje de pedido
     if (await canLaunch(whatsappUrl)) {
       await launch(whatsappUrl);
     } else {
@@ -45,6 +45,12 @@ class EmpanadaPage extends StatelessWidget {
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 20),
+            Image.asset(
+              'assets/empanada.png',  // Ruta de la imagen local
+              width: 150,  // Ajusta el ancho de la imagen según tus preferencias
+              height: 150, // Ajusta el alto de la imagen según tus preferencias
+            ),
+            SizedBox(height: 10), // Espacio entre la imagen y el botón de WhatsApp
             ElevatedButton.icon(
               onPressed: () =>
                   _launchWhatsApp(context), // Pasar context como argumento
